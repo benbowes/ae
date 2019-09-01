@@ -1,3 +1,27 @@
+# A E
+
+---
+
+## Problem to Solve
+
+#### A simple interface (API or UI) that allows:
+- Adding a customers 'first name', 'last name' and 'date of birth' fields.
+- Editing customers.
+- Deleting customers.
+- Searching for a customer by partial name match (first or last name).
+
+#### Tech
+- Typescript
+- React 16.7.0+ SPA
+- Redux store
+- Basic Jest tests
+- Use of components (preferably styled components)
+ 
+**The rest of this readme is from "Create React App" which this project utilized ...**
+
+---
+
+ 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
