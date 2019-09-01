@@ -1,11 +1,12 @@
 import React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-const Add: React.FC = () => {
-    const dispatch = useDispatch();
 
+const Add: React.FC<RouteComponentProps> = ({ history }) => {
+    const dispatch = useDispatch();
     return (
         <Formik
             initialValues={{
@@ -25,6 +26,9 @@ const Add: React.FC = () => {
                         },
                     });
                     setSubmitting(false);
+
+                    // Redirect to list of customers
+                    history.push('/list');
                 }, 500);
             }}
             validationSchema={Yup.object().shape({

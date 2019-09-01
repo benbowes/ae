@@ -31,13 +31,14 @@ export const customers: Reducer<Customer[], CustomerActions> = (
     switch (action.type) {
         case 'CUSTOMER_ADD':
             return [
-                ...state,
+                // Add lastest to the top of the list - has unique id so if same name, still ok
                 {
                     id: cuid(),
                     firstName: action.value.firstName,
                     lastName: action.value.lastName,
                     dob: action.value.dob,
-                }
+                },
+                ...state,
             ];
         default:
             return state;
