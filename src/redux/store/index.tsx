@@ -1,13 +1,13 @@
 import { createStore } from 'redux';
 import rootReducer from '../reducers/';
-import { Customer } from '../../types/global';
+import { State } from '../types';
 
 const initialState = { customers: [] };
 
-function makeStore(preloadedState: { customers: Customer[] } = initialState) {
+function makeStore(preloadedState: State = initialState) {
     const store = createStore(
         rootReducer,
-        initialState,
+        preloadedState,
         (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
     );
     return store;

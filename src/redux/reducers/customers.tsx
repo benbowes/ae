@@ -1,16 +1,32 @@
-import { Customer } from '../../types/global';
+import { Customer } from '../types';
 
-type State = Customer[];
-
-interface Action {
-    type: 
-        | 'CUSTOMER_ADD'
-        | 'CUSTOMER_EDIT'
-        | 'CUSTOMER_DELETE'
-        | 'CUSTOMER_SEARCH'
+interface CustomerAddAction {
+    type: 'CUSTOMER_ADD';
+    value: Customer;
 }
 
-export function customers(state: State = [], action: Action) {
+interface CustomerEditAction {
+    type: 'CUSTOMER_EDIT';
+    value: Customer;
+}
+
+interface CustomerDeleteAction {
+    type: 'CUSTOMER_DELETE';
+    value: string; // id
+}
+
+interface CustomerSearchAction {
+    type: 'CUSTOMER_SEARCH';
+    value: string; // search terms
+}
+
+type Action = 
+    | CustomerAddAction
+    | CustomerEditAction
+    | CustomerDeleteAction
+    | CustomerSearchAction
+
+export function customers(state: Customer[] = [], action: Action) {
     switch (action.type) {
         default:
             return state;

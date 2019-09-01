@@ -1,11 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import styles from './Navigation.module.css';
 
 const Navigation: React.FC = () => {
     return (
         <>
-            <Link to='/A'>Goto A</Link>
-            <Link to='/B'>Goto B</Link>
+            <NavLink to='/list' activeClassName={styles.active}>List</NavLink>
+            <NavLink to='/add' activeClassName={styles.active}>Add</NavLink>
+            <NavLink to='/search' activeClassName={styles.active}>Search</NavLink>
+            <NavLink to='/edit' activeClassName={styles.active}>Edit</NavLink>
+            <NavLink to='/delete' activeClassName={styles.active}>Delete</NavLink>
         </>
     );
 }
