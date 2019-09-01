@@ -1,25 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+import A from './pages/A';
+import B from './pages/B';
+import Navigation from './components/Navigation';
+import makeStore from './redux/store';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={makeStore()}>
+      <Router>
+
+        <Navigation />
+
+        <Route exact path="/A" component={A} />
+        <Route exact path="/B" component={B} />
+        <Redirect from="/" to="/A" />
+
+      </Router>
+    </Provider>
   );
 }
 
