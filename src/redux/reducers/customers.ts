@@ -14,15 +14,10 @@ interface CustomerDeleteAction extends Action<'CUSTOMER_DELETE'> {
     value: string; // id
 }
 
-interface CustomerSearchAction extends Action<'CUSTOMER_SEARCH'> {
-    value: string; // search terms
-}
-
 type CustomerActions = 
     | CustomerAddAction
     | CustomerEditAction
-    | CustomerDeleteAction
-    | CustomerSearchAction;
+    | CustomerDeleteAction;
 
 export const customers: Reducer<Customer[], CustomerActions> = (
     state = [],
@@ -40,6 +35,31 @@ export const customers: Reducer<Customer[], CustomerActions> = (
                 },
                 ...state,
             ];
+
+        case 'CUSTOMER_EDIT': {
+            const updatedCustomer = action.value;
+            const otherCustomers = state.filter(
+                // action.value.id = the id of the customer
+                (customer: Customer) => customer.id !== action.value.id
+            );
+
+            return [
+                // Add edited to the top of the list
+                updatedCustomer,
+                ...otherCustomers,
+            ];
+        }
+        
+        case 'CUSTOMER_DELETE': {
+            const otherCustomers = state.filter(
+                // action.value = the id of the customer
+                (customer: Customer) => customer.id !== action.value
+            );
+
+            // Remove customer from the list
+            return otherCustomers;
+        }
+
         default:
             return state;
     }

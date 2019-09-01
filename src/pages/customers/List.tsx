@@ -1,20 +1,18 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Customer, State } from '../../redux/types'
+import { RouteComponentProps } from 'react-router-dom';
+import { State } from '../../redux/types'
+import CustomerList from './CustomerList';
 
-const A: React.FC = () => {
+const List: React.FC<RouteComponentProps> = () => {
     const customers = useSelector((state: State) => state.customers);
     
     return (
         <div>
             <h1>Customers</h1>
-            <div>
-                {customers.map((customer: Customer) => (
-                    <div key={customer.id}>{customer.firstName} {customer.lastName} {customer.dob}</div>
-                ))}
-            </div>
+            <CustomerList customers={customers} />
         </div>
     );
 }
 
-export default A;
+export default List;

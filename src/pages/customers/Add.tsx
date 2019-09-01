@@ -2,11 +2,12 @@ import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
-
+import { validationSchema } from './validationSchema';
+import { Input } from '../../components/Input';
 
 const Add: React.FC<RouteComponentProps> = ({ history }) => {
     const dispatch = useDispatch();
+
     return (
         <Formik
             initialValues={{
@@ -14,6 +15,7 @@ const Add: React.FC<RouteComponentProps> = ({ history }) => {
                 firstName: '',
                 lastName: '',
             }}
+            validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
                     dispatch({
@@ -25,26 +27,11 @@ const Add: React.FC<RouteComponentProps> = ({ history }) => {
                             // `id` is added in the reducer
                         },
                     });
-                    setSubmitting(false);
 
                     // Redirect to list of customers
-                    history.push('/list');
+                    history.push('/customers');
                 }, 500);
             }}
-            validationSchema={Yup.object().shape({
-                firstName: Yup.string().required('Required'),
-                lastName: Yup.string().required('Required'),
-                dob: Yup.string()
-                    .matches(
-                        // e.g. dd/mm/yyyy
-                        /^((0|1|2|3)\d{1})\/((0|1)\d{1})\/((19|20)\d{2})/,
-                        {
-                            message: 'Please enter a valid birth date in the format "dd/mm/yyyy"',
-                            excludeEmptyString: true
-                        }
-                    )
-                    .required('Required'),
-            })}
         >
             {props => {
                 const {
@@ -60,60 +47,35 @@ const Add: React.FC<RouteComponentProps> = ({ history }) => {
                 } = props;
                 return (
                     <form onSubmit={handleSubmit}>
-                        <label htmlFor="firstName" style={{ display: 'block' }}>
-                            First name
-                        </label>
-                        <input
-                            id="firstName"
-                            placeholder=""
-                            type="text"
+                        <h1>Add customer</h1>
+                        <Input
+                            name="firstName"
+                            label="First Name"
                             value={values.firstName}
+                            error={errors.firstName}
+                            touched={touched.firstName}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            // className={
-                            //     errors.firstName && touched.firstName ? 'text-input error' : 'text-input'
-                            // }
                         />
-                        {errors.firstName && touched.firstName && (
-                            <div /*className="input-feedback"*/>{errors.firstName}</div>
-                        )}
-
-                        <label htmlFor="lastName" style={{ display: 'block' }}>
-                            Last name
-                        </label>
-                        <input
-                            id="lastName"
-                            placeholder=""
-                            type="text"
+                        <Input
+                            name="lastName"
+                            label="Last Name"
                             value={values.lastName}
+                            error={errors.lastName}
+                            touched={touched.lastName}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            // className={
-                            //     errors.lastName && touched.lastName ? 'text-input error' : 'text-input'
-                            // }
                         />
-                        {errors.lastName && touched.lastName && (
-                            <div /*className="input-feedback"*/>{errors.lastName}</div>
-                        )}
-
-                        <label htmlFor="dob" style={{ display: 'block' }}>
-                            Date of Birth
-                        </label>
-                        <input
-                            id="dob"
+                        <Input
+                            name="dob"
+                            label="Last Name"
                             placeholder="dd/mm/yyyy"
-                            type="text"
                             value={values.dob}
+                            error={errors.dob}
+                            touched={touched.dob}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            // className={
-                            //     errors.dob && touched.dob ? 'text-input error' : 'text-input'
-                            // }
                         />
-                        {errors.dob && touched.dob && (
-                            <div /*className="input-feedback"*/>{errors.dob}</div>
-                        )}
-
                         <div>
                             <button
                                 type="button"
@@ -127,8 +89,6 @@ const Add: React.FC<RouteComponentProps> = ({ history }) => {
                                 Submit
                             </button>
                         </div>
-
-                        <pre>{JSON.stringify(props, null, 2)}</pre>
                     </form>
                 );
             }}
