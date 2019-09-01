@@ -1,10 +1,10 @@
 export interface Customer {
-    id: string;
+    id?: string;
     firstName: string;
     lastName: string;
     dob: string;
 };
 
 export interface State {
-    customers: Customer[];
+    readonly customers: Customer[];
 }

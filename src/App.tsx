@@ -7,14 +7,13 @@ import Add from './pages/customers/Add';
 import Search from './pages/customers/Search';
 import Edit from './pages/customers/Edit';
 import Delete from './pages/customers/Delete';
-
 import Navigation from './components/Navigation';
 import makeStore from './redux/store';
-import mockState from './mockState';
+import mockPreloadedState from './mockPreloadedState';
 
 const App: React.FC = () => {
   return (
-    <Provider store={makeStore(mockState)}>
+    <Provider store={makeStore(mockPreloadedState)}>
       <Router>
         <Navigation />
         <Route exact path="/list" component={List} />
