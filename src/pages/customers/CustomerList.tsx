@@ -1,33 +1,43 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Customer } from '../../redux/types/index';
+import { Customer, State } from '../../redux/types/index';
 
-interface Props {
-    customers: Customer[];
-}
-
-const Navigation: React.FC<Props> = ({ customers }) => {
+const CustomerList: React.FC = () => {
     const dispatch = useDispatch();
+    const customers = useSelector((state: State) => state.customers);
+
     const [filteredCustomers, setFilteredCustomers] = useState(customers);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    // Update `filteredCustomers, searchTerm` if `customers` changes
+    useEffect(() => {
+        setFilteredCustomers(customers);
+        setSearchTerm('');
+    }, [customers])
 
     return (
-        <div>
+        <>
             <div>
                 Search
                 <input
+                    value={searchTerm}
                     onChange={({ target: { value }}: React.ChangeEvent<HTMLInputElement>) => {
-                        if (value !== '') {
+                        setSearchTerm(value);
+
+                        if (searchTerm !== '') {
                             const searchResult = customers.filter(
                                 (customer: Customer) => (
                                     // firstName or lastName must begin with the search term
-                                    customer.firstName.toLowerCase().indexOf(value.toLowerCase()) === 0
-                                    || customer.lastName.toLowerCase().indexOf(value.toLowerCase()) === 0
+                                    customer.firstName.toLowerCase().indexOf(searchTerm.toLowerCase()) === 0
+                                    || customer.lastName.toLowerCase().indexOf(searchTerm.toLowerCase()) === 0
                                 )
                             );
-                            return setFilteredCustomers(searchResult);
+                            setFilteredCustomers(searchResult);
+                        } else {
+                            setFilteredCustomers(customers);
                         }
-                        return setFilteredCustomers(customers);
+
                     }}
                 />
             </div>
@@ -73,8 +83,8 @@ const Navigation: React.FC<Props> = ({ customers }) => {
                     ))}
                 </tbody>
             </table>
-        </div>
+        </>
     );
 }
 
-export default Navigation;
+export default CustomerList;

@@ -81,7 +81,7 @@ const Edit: React.FC<RouteComponentProps & CustomRouteParams> = ({ history, matc
                             />
                             <Input
                                 name="dob"
-                                label="Last Name"
+                                label="Date of birth"
                                 placeholder="dd/mm/yyyy"
                                 value={values.dob}
                                 error={errors.dob}

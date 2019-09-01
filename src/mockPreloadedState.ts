@@ -4,9 +4,9 @@ export default {
     customers: [
         {
             id: cuid(),
-            firstName: 'Billy',
-            lastName: 'Ingots',
-            dob: '01/03/1989',
+            firstName: 'Alice',
+            lastName: 'Adams',
+            dob: '10/12/1997',
         },
         {
             id: cuid(),
@@ -16,21 +16,33 @@ export default {
         },
         {
             id: cuid(),
+            firstName: 'Billy',
+            lastName: 'Ingots',
+            dob: '01/03/1989',
+        },
+        {
+            id: cuid(),
             firstName: 'Edward',
             lastName: 'Duarte',
             dob: '01/03/1990',
         },
         {
             id: cuid(),
-            firstName: 'Alice',
-            lastName: 'Adams',
-            dob: '10/12/1997',
+            firstName: 'Fernanda',
+            lastName: 'Gonzalez',
+            dob: '01/03/1990',
         },
         {
             id: cuid(),
             firstName: 'Guston',
             lastName: 'Frasnarq',
             dob: '11/05/2001',
+        },
+        {
+            id: cuid(),
+            firstName: 'Helen',
+            lastName: 'Stockhausen',
+            dob: '01/03/1990',
         },
         {
             id: cuid(),
