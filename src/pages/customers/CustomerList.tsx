@@ -10,10 +10,9 @@ const CustomerList: React.FC = () => {
     const [filteredCustomers, setFilteredCustomers] = useState(customers);
     const [searchTerm, setSearchTerm] = useState('');
 
-    // Update `filteredCustomers, searchTerm` if `customers` changes
+    // Update `filteredCustomers` if `customers` changes
     useEffect(() => {
         setFilteredCustomers(customers);
-        setSearchTerm('');
     }, [customers])
 
     return (
@@ -24,20 +23,18 @@ const CustomerList: React.FC = () => {
                     value={searchTerm}
                     onChange={({ target: { value }}: React.ChangeEvent<HTMLInputElement>) => {
                         setSearchTerm(value);
-
-                        if (searchTerm !== '') {
+                        if (value !== '') {
                             const searchResult = customers.filter(
                                 (customer: Customer) => (
                                     // firstName or lastName must begin with the search term
-                                    customer.firstName.toLowerCase().indexOf(searchTerm.toLowerCase()) === 0
-                                    || customer.lastName.toLowerCase().indexOf(searchTerm.toLowerCase()) === 0
+                                    customer.firstName.toLowerCase().indexOf(value.toLowerCase()) === 0
+                                    || customer.lastName.toLowerCase().indexOf(value.toLowerCase()) === 0
                                 )
                             );
                             setFilteredCustomers(searchResult);
                         } else {
                             setFilteredCustomers(customers);
                         }
-
                     }}
                 />
             </div>

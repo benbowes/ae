@@ -40,15 +40,15 @@ export default {
         },
         {
             id: cuid(),
-            firstName: 'Helen',
-            lastName: 'Stockhausen',
-            dob: '01/03/1990',
-        },
-        {
-            id: cuid(),
             firstName: 'Sarah',
             lastName: 'Lee',
             dob: '02/10/1987',
-        }
+        },
+        {
+            id: cuid(),
+            firstName: 'Victoria',
+            lastName: 'Stockhausen',
+            dob: '01/03/1990',
+        },
     ]
 };
