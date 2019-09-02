@@ -1,8 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavigationWrapper, NavLink } from './Navigation.styled';
 import { generateUniqueId } from '../utils/generateUniqueId';
-
-import styles from './Navigation.module.css';
 
 interface Props {
     navLinks: {
@@ -11,17 +9,19 @@ interface Props {
     }[];
 }
 
-
-
 const Navigation: React.FC<Props> = ({ navLinks }) => {
     return (
-        <div>
+        <NavigationWrapper>
             {navLinks.map((link) => (
-                <NavLink key={generateUniqueId('navigationItem')} to={link.url} activeClassName={styles.active}>
+                <NavLink
+                    key={generateUniqueId('navigationItem')}
+                    to={link.url}
+                    activeClassName="active"
+                >
                     {link.label}
                 </NavLink>
             ))}
-        </div>
+        </NavigationWrapper>
     );
 }
 

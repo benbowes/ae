@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import { validationSchema } from './validationSchema';
 import { Input } from '../../components/Input';
+import { Button, ButtonGroup } from '../../components/Button.styled';
 
 const Add: React.FC<RouteComponentProps> = ({ history }) => {
     const dispatch = useDispatch();
@@ -68,7 +69,7 @@ const Add: React.FC<RouteComponentProps> = ({ history }) => {
                         />
                         <Input
                             name="dob"
-                            label="Last Name"
+                            label="Date of birth"
                             placeholder="dd/mm/yyyy"
                             value={values.dob}
                             error={errors.dob}
@@ -76,19 +77,23 @@ const Add: React.FC<RouteComponentProps> = ({ history }) => {
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
-                        <div>
-                            <button
+                        <ButtonGroup>
+                            <Button
                                 type="button"
                                 className="outline"
                                 onClick={handleReset}
                                 disabled={!dirty || isSubmitting}
                             >
                                 Reset
-                            </button>
-                            <button type="submit" disabled={isSubmitting}>
+                            </Button>
+                            <Button
+                                primary
+                                type="submit"
+                                disabled={isSubmitting}
+                            >
                                 Submit
-                            </button>
-                        </div>
+                            </Button>
+                        </ButtonGroup>
                     </form>
                 );
             }}

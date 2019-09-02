@@ -4,8 +4,9 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import { validationSchema } from './validationSchema';
-import { State } from '../../redux/types/index';
+import { State } from '../../types/index';
 import { Input } from '../../components/Input';
+import { Button, LinkButton, ButtonGroup } from '../../components/Button.styled';
 
 type CustomRouteParams = {
     match: {
@@ -89,14 +90,14 @@ const Edit: React.FC<RouteComponentProps & CustomRouteParams> = ({ history, matc
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                             />
-                            <div>
-                                <Link to="/customers">
+                            <ButtonGroup>
+                                <LinkButton to="/customers">
                                     Cancel
-                                </Link>
-                                <button type="submit" disabled={isSubmitting}>
+                                </LinkButton>
+                                <Button primary type="submit" disabled={isSubmitting}>
                                     Submit
-                                </button>
-                            </div>
+                                </Button>
+                            </ButtonGroup>
                         </form>
                     );
                 }}

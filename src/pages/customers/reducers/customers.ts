@@ -1,6 +1,6 @@
 import cuid from 'cuid';
 import { Action, Reducer } from 'redux';
-import { Customer } from '../types';
+import { Customer } from '../../../types';
 
 interface CustomerAddAction extends Action<'CUSTOMER_ADD'> {
     value: Customer;
