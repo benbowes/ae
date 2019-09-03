@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Customer, State } from '../../types';
 import { Table, Tr, Th, Td } from '../../components/Table.styled';
 import { Button, LinkButton, ButtonGroup } from '../../components/Button.styled';
+import ContentArea from '../../components/ContentArea.styled';
 import CustomerListSearch from './CustomerListSearch';
 
 const CustomerList: React.FC = () => {
@@ -12,12 +13,11 @@ const CustomerList: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
 
     // Update `filteredCustomers` if `customers` changes
-    useEffect(() => {
-        setFilteredCustomers(customers);
-    }, [customers])
+    useEffect(() => { setFilteredCustomers(customers); }, [customers])
 
     return (
-        <>
+        <ContentArea>
+            <h1>Customers</h1>
             <CustomerListSearch
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
@@ -41,13 +41,13 @@ const CustomerList: React.FC = () => {
                             <Td>{customer.dob}</Td>
                             <Td>
                                 <ButtonGroup>
-                                    <LinkButton primary to={`/edit/${customer.id}`}>
+                                    <LinkButton variant="primary" to={`/edit-customer/${customer.id}`}>
                                         Edit
                                     </LinkButton>
                                     <Button
                                         type="button"
                                         onClick={() => {
-                                            if (window.confirm(`Are you sure you want to delete customer ${customer.firstName} ${customer.lastName}?`)) {
+                                            if (window.confirm(`Delete '${customer.firstName} ${customer.lastName}' from customers?`)) {
                                                 dispatch({
                                                     type: 'CUSTOMER_DELETE',
                                                     value: customer.id,
@@ -59,11 +59,11 @@ const CustomerList: React.FC = () => {
                                     </Button>
                                 </ButtonGroup>
                             </Td>
-                        </Tr>                   
+                        </Tr>
                     ))}
                 </tbody>
             </Table>
-        </>
+        </ContentArea>
     );
 }
 

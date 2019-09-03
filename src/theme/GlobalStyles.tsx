@@ -2,7 +2,18 @@ import { createGlobalStyle } from 'styled-components';
 import theme from './';
 
 export default createGlobalStyle`
+  * :focus {
+    outline: 1px solid ${theme.colour.primary._400};
+  }
+
+  *,
+  *:after,
+  *:before {
+    box-sizing: border-box;
+  }
+
   body {
+    margin: 0;
     background: ${theme.colour.grey._50};
     font-family: ${theme.font.family.open_sans}, sans-serif;
     font-size: ${theme.font.size.base};

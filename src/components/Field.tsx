@@ -1,4 +1,8 @@
 import React from 'react';
+import styled from 'styled-components';
+import Input from './Input.styled';
+import Label from './Label.styled';
+import FieldError from './FieldError.styled';
 
 interface Props {
     name: string;
@@ -11,7 +15,11 @@ interface Props {
     onBlur: (e: React.FormEvent<HTMLInputElement>) => void,
 }
 
-export const Input: React.FC<Props> = ({
+const FieldWrapper = styled('div')`
+    margin-bottom: ${props => props.theme.spacing._16px};
+`;
+
+export const Field: React.FC<Props> = ({
     name,
     label,
     placeholder = '',
@@ -21,30 +29,26 @@ export const Input: React.FC<Props> = ({
     onChange,
     onBlur,
 }) => {
+    const hasError = Boolean(error && touched);
+
     return (
-        <>
-            <label
+        <FieldWrapper>
+            <Label
                 htmlFor={name}
                 style={{ display: 'block' }}
             >
                 {label}
-            </label>
-            <input
+            </Label>
+            <Input
                 id={name}
                 placeholder={placeholder}
                 type="text"
                 value={value}
                 onChange={onChange}
                 onBlur={onBlur}
-                // className={
-                //     errors.lastName && touched.lastName ? 'text-input error' : 'text-input'
-                // }
+                hasError={hasError}
             />
-            {error && touched && (
-                <div /*className="input-feedback"*/>
-                    {error}
-                </div>
-            )}
-        </>
+            {hasError && <FieldError>{error}</FieldError>}
+        </FieldWrapper>
     )
 }

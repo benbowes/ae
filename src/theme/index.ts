@@ -37,6 +37,8 @@ const theme = {
         _32px: '2rem',
     },
     colour: {
+        white: '#ffffff',
+        error: '#ce1126',
         primary: {
             _50: '#e1e7ec',
             _100: '#b5c3d0',

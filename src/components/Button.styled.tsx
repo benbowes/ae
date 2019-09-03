@@ -7,13 +7,13 @@ export const ButtonGroup = styled('div')`
     }
 `;
 
-export const Button = styled('button') <{ primary?: boolean }>`
-    background-color: ${props => props.primary
-        ? props.theme.colour.primary._50
+export const Button = styled('button') <{ variant?: 'primary' }>`
+    background-color: ${props => props.variant
+        ? props.theme.colour[props.variant]._50
         : props.theme.colour.grey._200
     };
-    border: 0px solid ${props => props.primary
-        ? props.theme.colour.primary._100
+    border: 0px solid ${props => props.variant
+        ? props.theme.colour[props.variant]._100
         : props.theme.colour.grey._100
     };
     color: ${props => props.theme.colour.grey._900};
@@ -26,9 +26,9 @@ export const Button = styled('button') <{ primary?: boolean }>`
     cursor: pointer;
     text-decoration: none;
 
-    &:hover {
-        background-color: ${props => props.primary
-            ? props.theme.colour.primary._100
+    &:hover:not(:disabled) {
+        background-color: ${props => props.variant
+            ? props.theme.colour[props.variant]._100
             : props.theme.colour.grey._300
         };
     }
@@ -36,16 +36,21 @@ export const Button = styled('button') <{ primary?: boolean }>`
     &:active {
         position: relative;
         top: 1px;
+    }
+
+    &:disabled {
+        cursor: default;
+        color: ${props => props.theme.colour.grey._400};
     }
 `;
 
-export const LinkButton = styled(Link) <{ primary?: boolean }>`
-    background-color: ${props => props.primary
-        ? props.theme.colour.primary._50
+export const LinkButton = styled(Link) <{ variant?: 'primary' }>`
+    background-color: ${props => props.variant
+        ? props.theme.colour[props.variant]._50
         : props.theme.colour.grey._200
     };
-    border: 0px solid ${props => props.primary
-        ? props.theme.colour.primary._100
+    border: 0px solid ${props => props.variant
+        ? props.theme.colour[props.variant]._100
         : props.theme.colour.grey._100
     };
     color: ${props => props.theme.colour.grey._900};
@@ -58,9 +63,9 @@ export const LinkButton = styled(Link) <{ primary?: boolean }>`
     cursor: pointer;
     text-decoration: none;
 
-    &:hover {
-        background-color: ${props => props.primary
-            ? props.theme.colour.primary._100
+    &:hover:not(:disabled) {
+        background-color: ${props => props.variant
+            ? props.theme.colour[props.variant]._100
             : props.theme.colour.grey._300
         };
     }
@@ -68,5 +73,10 @@ export const LinkButton = styled(Link) <{ primary?: boolean }>`
     &:active {
         position: relative;
         top: 1px;
+    }
+
+    &:disabled {
+        cursor: default;
+        color: ${props => props.theme.colour.grey._400};
     }
 `;

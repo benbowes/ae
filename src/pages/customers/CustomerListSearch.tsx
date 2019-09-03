@@ -1,5 +1,6 @@
 import React from 'react';
 import { Customer } from '../../types';
+import Input from '../../components/Input.styled';
 
 interface Props {
     searchTerm: string;
@@ -8,10 +9,16 @@ interface Props {
     setFilteredCustomers: (customers: Customer[]) => void,
 }
 
-const CustomerListSearch: React.FC<Props> = ({ searchTerm, setSearchTerm, customers, setFilteredCustomers }) => (
+const CustomerListSearch: React.FC<Props> = ({
+    searchTerm,
+    setSearchTerm,
+    customers,
+    setFilteredCustomers,
+}) => (
     <div>
-        Search
-        <input
+        <Input
+            id="search"
+            placeholder="Search customers by first or last name..."
             value={searchTerm}
             onChange={({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
                 setSearchTerm(value);

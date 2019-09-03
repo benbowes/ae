@@ -3,11 +3,14 @@ import styled from 'styled-components';
 export const Table = styled('table')`
     font: inherit;
     width: 100%;
-    border-top: 1px solid ${props => props.theme.colour.grey._200};
     border-bottom: 1px solid ${props => props.theme.colour.grey._200};
 `;
 
-export const Tr = styled('tr')``;
+export const Tr = styled('tr')`
+    &:hover {
+        background: ${props => props.theme.colour.grey._100};
+    }
+`;
 
 export const Th = styled('th')`
     text-align: left;
