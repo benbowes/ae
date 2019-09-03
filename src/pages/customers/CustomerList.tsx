@@ -25,7 +25,7 @@ const CustomerList: React.FC = () => {
                 setFilteredCustomers={setFilteredCustomers}
             />
 
-            <Table>
+            <Table data-testid="customerList">
                 <tbody>
                     <Tr>
                         <Th>First name</Th>
@@ -41,10 +41,15 @@ const CustomerList: React.FC = () => {
                             <Td>{customer.dob}</Td>
                             <Td>
                                 <ButtonGroup>
-                                    <LinkButton variant="primary" to={`/edit-customer/${customer.id}`}>
+                                    <LinkButton
+                                        data-testid="editButton"
+                                        variant="primary"
+                                        to={`/edit-customer/${customer.id}`}
+                                    >
                                         Edit
                                     </LinkButton>
                                     <Button
+                                        data-testid="deleteButton"
                                         type="button"
                                         onClick={() => {
                                             if (window.confirm(`Delete '${customer.firstName} ${customer.lastName}' from customers?`)) {

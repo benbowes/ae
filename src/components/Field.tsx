@@ -32,14 +32,18 @@ export const Field: React.FC<Props> = ({
     const hasError = Boolean(error && touched);
 
     return (
-        <FieldWrapper>
+        <FieldWrapper
+            data-testid={`${name}_FieldWrapper`}
+        >
             <Label
+                data-testid={`${name}_Label`}
                 htmlFor={name}
                 style={{ display: 'block' }}
             >
                 {label}
             </Label>
             <Input
+                data-testid={`${name}_Input`}
                 id={name}
                 placeholder={placeholder}
                 type="text"
@@ -48,7 +52,7 @@ export const Field: React.FC<Props> = ({
                 onBlur={onBlur}
                 hasError={hasError}
             />
-            {hasError && <FieldError>{error}</FieldError>}
+            {hasError && <FieldError data-testid={`${name}_FieldError`}>{error}</FieldError>}
         </FieldWrapper>
     )
 }

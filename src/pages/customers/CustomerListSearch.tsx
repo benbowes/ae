@@ -17,6 +17,7 @@ const CustomerListSearch: React.FC<Props> = ({
 }) => (
     <div>
         <Input
+            data-testid="search"
             id="search"
             placeholder="Search customers by first or last name..."
             value={searchTerm}
