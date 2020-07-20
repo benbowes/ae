@@ -1,6 +1,6 @@
 # Frontend code sample
 
-#### A simple interface (API or UI) that allows:
+#### A simple interface that allows:
 - Adding a customers 'first name', 'last name' and 'date of birth' fields.
 - Editing customers.
 - Deleting customers.
